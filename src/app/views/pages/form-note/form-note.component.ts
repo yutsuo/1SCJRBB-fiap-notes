@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormNoteComponent implements OnInit {
 
-  title = "FIAP NOTES"
+  title = "FIAP NOTES";
   logoImage = "/assets/logo.png";
 
   constructor() { }
