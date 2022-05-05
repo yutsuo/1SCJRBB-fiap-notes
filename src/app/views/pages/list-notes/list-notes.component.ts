@@ -17,10 +17,20 @@ export class ListNotesComponent implements OnInit {
 
   //método do cliclo de vida do componente
   ngOnInit(): void {
-    this.notes = this.noteService.getNotes();
+    this.getApiNotes();
+  }
+
+  getApiNotes(){
+    this.noteService.getNotes().subscribe({
+      next: (apiNotes) => this.notes = apiNotes,
+      error: (error) => console.error(error),
+      // complete: () => alert("Deu tudo certo")
+    });
   }
 
   removeNote(noteId: number){
-    this.notes = this.noteService.removeNote(noteId);
+    this.noteService.removeNote(noteId).subscribe(
+      () => this.notes = this.notes.filter(note => note.id !== noteId)
+    );
   }
 }

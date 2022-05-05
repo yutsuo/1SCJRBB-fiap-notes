@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-form-note',
@@ -10,9 +12,30 @@ export class FormNoteComponent implements OnInit {
   title = "FIAP NOTES";
   logoImage = "/assets/logo.png";
 
-  constructor() { }
+  checkoutForm: FormGroup;
+
+  constructor(private formBuilder: FormBuilder,
+      private noteService: NoteService) {
+    this.checkoutForm = this.formBuilder.group({
+      textNote: ['', [Validators.required, Validators.minLength(5)]],
+    })
+  }
 
   ngOnInit(): void {
+  }
+
+  sendNote(){
+    // console.log(this.checkoutForm.get('textNote')?.errors);
+    if(this.checkoutForm.valid){  
+      this.noteService.postNotes(this.checkoutForm.value.textNote)
+        .subscribe(
+          () => this.checkoutForm.reset()
+        );
+    }
+  }
+
+  get textNote(){
+    return this.checkoutForm.get('textNote');
   }
 
 }
