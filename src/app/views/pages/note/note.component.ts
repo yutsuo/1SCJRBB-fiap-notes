@@ -1,11 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-
-interface Note {
-  id: number;
-  text: string;
-  date: Date;
-  urgent?: boolean; 
-}
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Note } from 'src/app/services/@types/note';
 
 @Component({
   selector: 'app-note',
@@ -27,13 +21,17 @@ export class NoteComponent implements OnInit {
   @Input()
   titleProp: any;
 
+  @Output()
+  notify = new EventEmitter();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  removeNote(){
-    alert("a nota será removida");
+  confirmRemove(){
+    if(confirm("Deseja realmente apagar?"))
+      this.notify.emit();
   }
 
 }
