@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Note } from 'src/app/services/@types/note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -9,11 +10,20 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class ListNotesComponent implements OnInit {
   title = 'Titulo da nota';
-
   notes = [] as Note[];
 
+  subscription: Subscription;
+
   //injetando a dependência do service
-  constructor(private noteService: NoteService) {}
+  constructor(private noteService: NoteService) {
+    this.subscription = this.noteService.newNoteProvider.subscribe({
+      next: (note: Note) => {
+        // this.getApiNotes();
+        this.notes.push(note);
+      },
+      error: () => {}
+    });
+  }
 
   //método do cliclo de vida do componente
   ngOnInit(): void {
