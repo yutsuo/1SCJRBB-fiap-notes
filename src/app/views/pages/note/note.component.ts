@@ -23,6 +23,8 @@ export class NoteComponent implements OnInit {
 
   @Output()
   notify = new EventEmitter();
+  @Output()
+  editNotify = new EventEmitter();
 
   constructor() { }
 
@@ -32,6 +34,10 @@ export class NoteComponent implements OnInit {
   confirmRemove(){
     if(confirm("Deseja realmente apagar?"))
       this.notify.emit();
+  }
+
+  click() {
+    this.editNotify.emit();
   }
 
 }

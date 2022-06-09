@@ -1,17 +1,10 @@
 <aside>
-  <img [src]="logoImage" />
+  <img alt="" [src]="logoImage" />
   <h1>{{title}}</h1>
-  <form id="form-notes" 
-      [formGroup]="checkoutForm" (submit)="sendNote()">
+  <form id="form-notes" [formGroup]="checkoutForm" (submit)="sendNote()">
     <div class="input-group">
       <label>Nota:</label>
-      <textarea
-        type="text"
-        id="input-cpf"
-        formControlName="textNote"
-        required
-        placeholder="Digite a nota"
-      ></textarea>
+      <textarea type="text" id="input-cpf" formControlName="textNote" required placeholder="Digite a nota"></textarea>
       <div *ngIf="textNote?.touched">
         <div class="errors" *ngIf="textNote?.errors?.['required']">
           Este campo é obrigatório
@@ -21,6 +14,13 @@
         </div>
       </div>
     </div>
-    <button [disabled]="!checkoutForm?.valid">Salvar</button>
+    <button type="button" [disabled]="!checkoutForm?.valid">Salvar</button>
+  </form>
+  <form id="edit-notes" [formGroup]="checkoutForm" (submit)="sendNote()">
+    <div class="input-group">
+      <label>Nota:</label>
+      <textarea type="text" id="edit-cpf" formControlName="textNote" required placeholder="Edite a nota"></textarea>
+    </div>
+    <button type="button" [disabled]="!checkoutForm?.valid">Salvar</button>
   </form>
 </aside>

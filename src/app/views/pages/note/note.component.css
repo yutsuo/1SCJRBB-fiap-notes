@@ -14,8 +14,15 @@ article p:first-child {
   margin-bottom: 10px;
 }
 
+article .note-text {
+  height: 65%;
+} 
+
+article .icons-container {
+  position: relative;
+}
+
 article .material-icons {
-  position: absolute;
   bottom: 5px;
   right: 5px;
 
@@ -34,5 +41,6 @@ article .material-icons:hover {
   position: absolute;
   bottom: 5px;
   left: 5px;
+  width: -moz-fit-content;
   width: fit-content;
 }

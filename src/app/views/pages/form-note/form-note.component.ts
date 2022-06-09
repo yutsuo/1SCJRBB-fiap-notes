@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NoteService } from 'src/app/services/note.service';
+import { Note } from 'src/app/services/@types/note';
 
 @Component({
   selector: 'app-form-note',
   templateUrl: './form-note.component.html',
   styleUrls: ['./form-note.component.css'],
 })
+
 export class FormNoteComponent implements OnInit {
   title = 'FIAP NOTES';
   logoImage = '/assets/logo.png';
@@ -37,6 +39,17 @@ export class FormNoteComponent implements OnInit {
         error: (error) => alert("Algo errado na inserção! " + error)
       });
     }
+  }
+
+  singleNote = {} as Note;
+
+  editNote(noteId: number) {
+    console.log("editando oe");
+    this.noteService.getSingleNote(noteId).subscribe({
+      next: (editNote) => this.singleNote = editNote,
+      error: (error) => console.error(error),
+    }
+    );
   }
 
   get textNote() {

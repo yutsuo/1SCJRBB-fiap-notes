@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { Note } from 'src/app/services/@types/note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -11,6 +11,7 @@ import { NoteService } from 'src/app/services/note.service';
 export class ListNotesComponent implements OnInit {
   title = 'Titulo da nota';
   notes = [] as Note[];
+  singleNote = {} as Note;
 
   subscription: Subscription;
 
@@ -21,7 +22,7 @@ export class ListNotesComponent implements OnInit {
         // this.getApiNotes();
         this.notes.push(note);
       },
-      error: () => {}
+      error: () => { }
     });
   }
 
@@ -30,7 +31,7 @@ export class ListNotesComponent implements OnInit {
     this.getApiNotes();
   }
 
-  getApiNotes(){
+  getApiNotes() {
     this.noteService.getNotes().subscribe({
       next: (apiNotes) => this.notes = apiNotes,
       error: (error) => console.error(error),
@@ -38,9 +39,20 @@ export class ListNotesComponent implements OnInit {
     });
   }
 
-  removeNote(noteId: number){
+  removeNote(noteId: number) {
+    console.log("deletando oe");
     this.noteService.removeNote(noteId).subscribe(
       () => this.notes = this.notes.filter(note => note.id !== noteId)
+    );
+  }
+
+  editNote(noteId: number) {
+    console.log("editNote()");
+    this.noteService.getSingleNote(noteId).subscribe({
+      next: (editNote) => this.singleNote = editNote,
+      error: (error) => console.error(error),
+      complete: () => console.log("complete: ", this.singleNote)
+    }
     );
   }
 }
