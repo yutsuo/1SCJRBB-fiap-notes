@@ -16,11 +16,4 @@
     </div>
     <button type="button" [disabled]="!checkoutForm?.valid">Salvar</button>
   </form>
-  <form id="edit-notes" [formGroup]="checkoutForm" (submit)="sendNote()">
-    <div class="input-group">
-      <label>Nota:</label>
-      <textarea type="text" id="edit-cpf" formControlName="textNote" required placeholder="Edite a nota"></textarea>
-    </div>
-    <button type="button" [disabled]="!checkoutForm?.valid">Salvar</button>
-  </form>
 </aside>

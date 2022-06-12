@@ -2,7 +2,7 @@
     <app-note 
         *ngFor="let note of notes" 
         (notify)="removeNote(note.id)" 
-        (editNotify)="editNote(note.id)"
+        (updateNotify)="updateNote(note.id, note.text)"
         [noteProp]="note" 
         [titleProp]="title">
     </app-note>

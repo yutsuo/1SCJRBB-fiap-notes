@@ -35,24 +35,20 @@ export class ListNotesComponent implements OnInit {
     this.noteService.getNotes().subscribe({
       next: (apiNotes) => this.notes = apiNotes,
       error: (error) => console.error(error),
-      // complete: () => alert("Deu tudo certo")
+      complete: () => console.log("Notes loading complete.")
     });
   }
 
   removeNote(noteId: number) {
-    console.log("deletando oe");
+    console.log("deleting yay \\o/");
     this.noteService.removeNote(noteId).subscribe(
       () => this.notes = this.notes.filter(note => note.id !== noteId)
     );
   }
 
-  editNote(noteId: number) {
-    console.log("editNote()");
-    this.noteService.getSingleNote(noteId).subscribe({
-      next: (editNote) => this.singleNote = editNote,
-      error: (error) => console.error(error),
-      complete: () => console.log("complete: ", this.singleNote)
-    }
-    );
+  updateNote(noteId: number, textNote: string) {
+    console.log("editing yay \\o/");
+    this.noteService.updateNote(noteId, textNote).subscribe();
+    console.log(noteId, textNote);
   }
 }

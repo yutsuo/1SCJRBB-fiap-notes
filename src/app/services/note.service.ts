@@ -76,5 +76,9 @@ export class NoteService {
     return this.http.get<Note>(`${this.apiUrl}/notes/${noteId}`);
   }
 
+  updateNote(noteId: number, textNote: string) {
+    return this.http.put<Note>(`${this.apiUrl}/notes/${noteId}`, { text: textNote });
+  }
+
 
 }

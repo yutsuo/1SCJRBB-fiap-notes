@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { Note } from 'src/app/services/@types/note';
+import { NoteService } from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-note',
@@ -15,16 +16,12 @@ export class NoteComponent implements OnInit {
   //   urgert: false
   // }
 
-  @Input()
-  noteProp = {} as Note;
+  @Input() noteProp = {} as Note;
+  @Input() titleProp: any;
+  @Input() isEdit: boolean = false;
 
-  @Input()
-  titleProp: any;
-
-  @Output()
-  notify = new EventEmitter();
-  @Output()
-  editNotify = new EventEmitter();
+  @Output() notify = new EventEmitter();
+  @Output() updateNotify = new EventEmitter();
 
   constructor() { }
 
@@ -36,8 +33,15 @@ export class NoteComponent implements OnInit {
       this.notify.emit();
   }
 
-  click() {
-    this.editNotify.emit();
+  edit() {
+    this.isEdit = !this.isEdit;
+    console.log("this.isEdit", this.isEdit);
+  }
+
+  update() {
+    this.updateNotify.emit();
+    console.log("update()");
+    this.isEdit = !this.isEdit;
   }
 
 }
