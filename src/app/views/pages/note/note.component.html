@@ -3,13 +3,14 @@
 
   <p *ngIf="!isEdit; else elseBlock" class="note-text">{{noteProp.text}}</p>
   <ng-template #elseBlock>
-    <input aria-label="edit" id="edit" [(ngModel)]="noteProp.text" class="note-text">
-    <span class="material-icons" (click)="update()"> save </span>
+    <textarea aria-label="edit" id="edit" autofocus rows="5" [(ngModel)]="noteProp.text" class="edit-text"></textarea>
   </ng-template>
 
   <!-- <p *ngIf="isEdit">YOU UNCLICKED THE EDIT BUTTON</p> -->
   <!-- <p class="note-text">{{noteProp.text}}</p> -->
   <span *ngIf="noteProp.urgent" class="material-icons" id="priority"> priority_high </span>
-  <span class="material-icons" (click)="edit()"> edit </span>
   <span class="material-icons" (click)="confirmRemove()"> delete_forever </span>
+  <span class="material-icons" (click)="edit()"> edit </span>
+  <span *ngIf="isEdit" class="material-icons" (click)="update()"> save </span>
+
 </article>

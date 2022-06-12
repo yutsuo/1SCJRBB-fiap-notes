@@ -41,17 +41,6 @@ export class FormNoteComponent implements OnInit {
     }
   }
 
-  // singleNote = {} as Note;
-
-  // editNote(noteId: number) {
-  //   console.log("editando oe");
-  //   this.noteService.getSingleNote(noteId).subscribe({
-  //     next: (editNote) => this.singleNote = editNote,
-  //     error: (error) => console.error(error),
-  //   }
-  //   );
-  // }
-
   get textNote() {
     return this.checkoutForm.get('textNote');
   }

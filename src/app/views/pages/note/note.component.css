@@ -29,12 +29,23 @@ article .material-icons {
   font-size: 32px;
   cursor: pointer;
   transition: 0.2s;
+  float: right;
 }
 
 article .material-icons:hover {
   color: #333;
   transform: scale(1.1);
   transform: rotate(360deg);
+}
+
+article .edit-text {
+  resize: none;
+  outline: none;
+  height: 65%;
+  background-color: #764455;
+  color: rgb(235, 222, 222);
+  font-size: medium;
+
 }
 
 #priority {
