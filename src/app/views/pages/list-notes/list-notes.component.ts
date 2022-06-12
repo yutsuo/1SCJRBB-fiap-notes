@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Note } from 'src/app/services/@types/note';
 import { NoteService } from 'src/app/services/note.service';
 
@@ -49,6 +49,5 @@ export class ListNotesComponent implements OnInit {
   updateNote(noteId: number, textNote: string) {
     console.log("editing yay \\o/");
     this.noteService.updateNote(noteId, textNote).subscribe();
-    console.log(noteId, textNote);
   }
 }

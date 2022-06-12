@@ -35,7 +35,7 @@ export class NoteComponent implements OnInit {
 
   edit() {
     this.isEdit = !this.isEdit;
-    console.log("this.isEdit", this.isEdit);
+    console.log("isEdit", this.isEdit);
   }
 
   update() {
